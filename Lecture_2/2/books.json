@@ -1,0 +1,62 @@
+{
+    "Book_1": [
+        "book_title: XML Developer's Guide",
+        "book_description: An in-depth look at creating applications with XML.",
+        "author: Matthew Gambardella"
+    ],
+    "Book_2": [
+        "book_title: Midnight Rain",
+        "book_description: A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world.",
+        "author: Kim Ralls"
+    ],
+    "Book_3": [
+        "book_title: Maeve Ascendant",
+        "book_description: After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.",
+        "author: Eva Corets"
+    ],
+    "Book_4": [
+        "book_title: Oberon's Legacy",
+        "book_description: In post-apocalypse England, the mysterious agent known only as Oberon helps to create a new life for the inhabitants of London. Sequel to Maeve Ascendant.",
+        "author: Eva Corets"
+    ],
+    "Book_5": [
+        "book_title: The Sundered Grail",
+        "book_description: The two daughters of Maeve, half-sisters, battle one another for control of England. Sequel to Oberon's Legacy.",
+        "author: Eva Corets"
+    ],
+    "Book_6": [
+        "book_title: Lover Birds",
+        "book_description: When Carla meets Paul at an ornithology conference, tempers fly as feathers get ruffled.",
+        "author: Cynthia Randall"
+    ],
+    "Book_7": [
+        "book_title: Splish Splash",
+        "book_description: A deep sea diver finds true love twenty thousand leagues beneath the sea.",
+        "author: Paula Thurman"
+    ],
+    "Book_8": [
+        "book_title: Creepy Crawlies",
+        "book_description: An anthology of horror stories about roaches, centipedes, scorpions  and other insects.",
+        "author: Stefan Knorr"
+    ],
+    "Book_9": [
+        "book_title: Paradox Lost",
+        "book_description: After an inadvertant trip through a Heisenberg Uncertainty Device, James Salway discovers the problems of being quantum.",
+        "author: Peter Kress"
+    ],
+    "Book_10": [
+        "book_title: Microsoft .NET: The Programming Bible",
+        "book_description: Microsoft's .NET initiative is explored in detail in this deep programmer's reference.",
+        "author: Tim O'Brien"
+    ],
+    "Book_11": [
+        "book_title: MSXML3: A Comprehensive Guide",
+        "book_description: The Microsoft MSXML3 parser is covered in detail, with attention to XML DOM interfaces, XSLT processing, SAX and more.",
+        "author: Tim O'Brien"
+    ],
+    "Book_12": [
+        "book_title: Visual Studio 7: A Comprehensive Guide",
+        "book_description: Microsoft Visual Studio 7 is explored in depth, looking at how Visual Basic, Visual C++, C#, and ASP+ are integrated into a comprehensive development environment.",
+        "author: Mike Galos"
+    ]
+}
