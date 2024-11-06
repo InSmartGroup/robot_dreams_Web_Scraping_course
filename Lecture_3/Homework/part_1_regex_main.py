@@ -33,20 +33,20 @@ with open("part_1_text.txt", "r") as file:
     text = file.read()
 
 if __name__ == "__main__":
-    # # the text contains 8 emails
-    # find_emails(text)
-    # print(f"{len(find_emails(text))} emails found.")
-    # print(f"Emails: {find_emails(text)}")
-    #
-    # # there are 8 dates (6 commonly used and 2 text-based)
-    # find_dates(text)
-    # print(f"{len(find_dates(text))} dates found.")
-    # print(f"Dates: {find_dates(text)}")
-    #
-    # # there are 9 URLs
-    # find_urls(text)
-    # print(f"{len(find_urls(text))} URLs found.")
-    # print(f"URLs: {find_urls(text)}")
+    # the text contains 8 emails
+    find_emails(text)
+    print(f"{len(find_emails(text))} emails found.")
+    print(f"Emails: {find_emails(text)}")
+
+    # there are 8 dates (6 commonly used and 2 text-based)
+    find_dates(text)
+    print(f"{len(find_dates(text))} dates found.")
+    print(f"Dates: {find_dates(text)}")
+
+    # there are 9 URLs
+    find_urls(text)
+    print(f"{len(find_urls(text))} URLs found.")
+    print(f"URLs: {find_urls(text)}")
 
     # there are 7 phone numbers
     find_phones(text)
