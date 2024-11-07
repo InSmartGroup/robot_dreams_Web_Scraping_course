@@ -61,19 +61,19 @@ class TextParser:
 if __name__ == "__main__":
     text_parser = TextParser("part_1_text.txt")
 
-    print(text_parser.text)
-
-    # there should be 8 emails
-    print(text_parser.length_emails())
-    print(text_parser.find_emails())
-
-    # there should be 8 dates
-    print(text_parser.length_dates())
-    print(text_parser.find_dates())
-
-    # there should be 8 URLs
-    print(text_parser.length_urls())
-    print(text_parser.find_urls())
+    # print(text_parser.text)
+    #
+    # # there should be 8 emails
+    # print(text_parser.length_emails())
+    # print(text_parser.find_emails())
+    #
+    # # there should be 8 dates
+    # print(text_parser.length_dates())
+    # print(text_parser.find_dates())
+    #
+    # # there should be 8 URLs
+    # print(text_parser.length_urls())
+    # print(text_parser.find_urls())
 
     # NOTE: this function hasn't been completed yet
     # there should be 9 phone numbers
