@@ -109,13 +109,14 @@ class Parser:
         with open(filename, "w") as file:
             json.dump(data, file, indent=4)
 
-    def retry(self):
-        if self.last_operation is not None:
-            if self.args is not None:
-                self.last_operation(*self.args)
-
-            else:
-                self.last_operation()
-
-        else:
-            print("Nothing to retry.")
+    # def retry(self):
+    #     TODO: resolve how to implement this function. I still didn't figure out how to unpack the list properly
+    #     if self.last_operation is not None:
+    #         if self.args is not None:
+    #             self.last_operation(*self.args)
+    #
+    #         else:
+    #             self.last_operation()
+    #
+    #     else:
+    #         print("Nothing to retry.")
