@@ -1,13 +1,9 @@
 import json
 
-from Project.Parser.parser import Parser
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
-
-# parser = Parser("https://jobs.marksandspencer.com/job-search?country%5B0%5D=United%20Kingdom&page=2&radius=")
-# parser.check_request_status()
 
 driver = webdriver.Chrome()
 wait = WebDriverWait(driver, timeout=10)
