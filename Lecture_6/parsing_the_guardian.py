@@ -61,8 +61,8 @@ if __name__ == "__main__":
     for i in div:
         url = i.find("a").get("href")
         url = f"https://www.theguardian.com/uk{url}"
-        region = i.find("h3", {"class": "card-headline"}).find("div").text
-        title = i.find("h3", {"class": "card-headline"}).find("span").text
+        region = i.find("h3", {"class": "card-headline"}).search_html("div").text
+        title = i.find("h3", {"class": "card-headline"}).search_html("span").text
 
         data.append({
             "url": url,
