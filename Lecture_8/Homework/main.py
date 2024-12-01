@@ -1,41 +1,36 @@
-from bs4 import BeautifulSoup
-from selenium import webdriver
-
 import json
-import lxml
-import random
-import requests
 
+from Project.Parser.parser import Parser
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.ui import WebDriverWait
 
-def get_user_agents():
-    url = r"https://hasdata.com/blog/user-agents-for-web-scraping"
+# parser = Parser("https://jobs.marksandspencer.com/job-search?country%5B0%5D=United%20Kingdom&page=2&radius=")
+# parser.check_request_status()
 
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        "Referer": "https://www.google.com"
-    }
+driver = webdriver.Chrome()
+wait = WebDriverWait(driver, timeout=10)
 
-    response = requests.get(url, headers=headers)
+max_page = 3
 
-    soup = BeautifulSoup(response.content, "lxml")
+result = []
 
-    table = soup.find("div", attrs={"class": "rounded-2xl border overflow-x-auto"})
-    rows = table.find_all("td")
+for page in range(1, max_page):
+    driver.get(f"https://jobs.marksandspencer.com/job-search?country%5B0%5D=United%20Kingdom&page={page}&radius=")
 
-    user_agents = []
+    wait.until(expected_conditions.presence_of_element_located((By.CLASS_NAME, "ais-Hits-item")))
 
-    for row in rows[1::2]:
-        user_agents.append({
-            "User-Agent": row.text
+    elements = driver.find_elements(By.CLASS_NAME, "ais-Hits-item")
+
+    for element in elements:
+        title = element.find_element(By.TAG_NAME, "h3").text
+        url = element.find_element(By.XPATH, ".//a[@class='c-btn c-btn--primary | [ mt-16 | md.mt-0 ]']").get_property("href")
+
+        result.append({
+            "title": title,
+            "url": url
         })
-
-    with open("user_agents.json", "w") as file:
-        json.dump(user_agents, file, indent=4)
-
-    return user_agents
-
-
-if __name__ == "__main__":
-    user_agents = get_user_agents()
-
-    print(user_agents[5]["User-Agent"])
+#
+with open("result.json", "w") as file:
+    json.dump(result, file, indent=4)
