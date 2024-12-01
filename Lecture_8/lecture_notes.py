@@ -1,10 +1,13 @@
-from bs4 import BeautifulSoup
+from Project.Parser.parser import Parser
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
-import json
 import lxml
 import requests
 
+# URL = r"https://www.tmforum.org/membership/current-members/"
+# parser = Parser(url=URL)
 
-url = r""
+URL = r""
 
+driver = webdriver.Chrome()

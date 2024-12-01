@@ -84,7 +84,7 @@ class Parser:
         return tree.xpath(xpath)
 
     def crawl(self, links: list, xpath_pattern: str, random_headers=False, sleep_timer=0):
-        self.last_operation, *self.args = self.crawl, xpath_pattern, random_headers, sleep_timer
+        self.last_operation, *self.args = self.crawl, links, xpath_pattern, random_headers, sleep_timer
 
         content = []
 
@@ -110,8 +110,12 @@ class Parser:
             json.dump(data, file, indent=4)
 
     def retry(self):
-        if self.args is not None:
-            self.last_operation(*self.args)
+        if self.last_operation is not None:
+            if self.args is not None:
+                self.last_operation(*self.args)
+
+            else:
+                self.last_operation()
 
         else:
-            self.last_operation()
+            print("Nothing to retry.")
