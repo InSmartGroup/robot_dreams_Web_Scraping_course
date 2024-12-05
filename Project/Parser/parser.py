@@ -1,5 +1,10 @@
 from bs4 import BeautifulSoup
 from lxml import html
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.ui import WebDriverWait
+from Project.Parser.ws_headers import ws_headers
 
 import json
 import random
@@ -13,10 +18,7 @@ class Parser:
         self.url = url
 
         if random_headers:
-            with open("./Parser/headers.json", "r") as file:
-                content = json.load(file)
-                random_header = random.choice(content)
-            self.headers = random_header
+            self.headers = random.choice(ws_headers)
 
         else:
             self.headers = {
@@ -26,16 +28,12 @@ class Parser:
 
         self.content = None
         self.domain_name = re.findall(r"((http|https)://[a-zA-Z0-9._-]+)", self.url)[0][0]
-        self.last_operation = None
-        self.args = None
 
     def check_request_status(self):
         response = requests.get(self.url, headers=self.headers)
         print(response.status_code, response.reason)
 
     def parse(self, parser="lxml", sleep_timer=0, save_to_file=None):
-        self.last_operation, *self.args = self.parse, parser, sleep_timer, save_to_file
-
         time.sleep(sleep_timer)
 
         response = requests.get(self.url, headers=self.headers)
@@ -50,8 +48,6 @@ class Parser:
         return self.content
 
     def read_from_file(self, file_name: str):
-        self.last_operation, *self.args = self.read_from_file, file_name
-
         try:
             with open(file_name, "r", encoding="utf-8") as file:
                 content = file.read()
@@ -64,8 +60,6 @@ class Parser:
             return "File not found. Apply the 'get_data' method first."
 
     def search_html(self, tag: str, attrs: dict, find_all=False, sleep_timer=0):
-        self.last_operation, *self.args = self.search_html, tag, attrs, find_all, sleep_timer
-
         time.sleep(sleep_timer)
 
         if find_all:
@@ -74,18 +68,33 @@ class Parser:
         else:
             return self.content.find(tag, attrs)
 
-    def search_xpath(self, xpath: str, sleep_timer=0):
-        self.last_operation, *self.args = self.search_xpath, xpath, sleep_timer
+    # def search_html_js(self):
+    #     TODO: complete and test this function
+    #     pass
 
+    def search_xpath(self, xpath: str, sleep_timer=0):
         time.sleep(sleep_timer)
 
         tree = html.fromstring(str(self.content))
 
         return tree.xpath(xpath)
 
-    def crawl(self, links: list, xpath_pattern: str, random_headers=False, sleep_timer=0):
-        self.last_operation, *self.args = self.crawl, links, xpath_pattern, random_headers, sleep_timer
+    # def search_xpath_js(self, url: str, search_by="xpath", wait_js=10):
+    #     TODO: complete and test this function
+    #     driver = webdriver.Chrome()
+    #     wait = WebDriverWait(driver, timeout=wait_js)
+    #
+    #     search_methods = {
+    #         "tag": By.TAG_NAME,
+    #         "class": By.CLASS_NAME,
+    #         "id": By.ID,
+    #         "xpath": By.XPATH
+    #     }
+    #
+    #     driver.get(url)
 
+    @staticmethod
+    def crawl(links: list, xpath_pattern: str, random_headers=False, sleep_timer=0):
         content = []
 
         for link in links:
@@ -98,25 +107,9 @@ class Parser:
         return content
 
     def change_headers(self):
-        with open("./Parser/headers.json", "r") as file:
-            content = json.load(file)
-            random_header = random.choice(content)
-
-        self.headers = random_header
+        self.headers = random.choice(ws_headers)
 
     @staticmethod
     def to_json(filename: str, data: list):
         with open(filename, "w") as file:
             json.dump(data, file, indent=4)
-
-    # def retry(self):
-    #     TODO: resolve how to implement this function. I still didn't figure out how to unpack the list properly
-    #     if self.last_operation is not None:
-    #         if self.args is not None:
-    #             self.last_operation(*self.args)
-    #
-    #         else:
-    #             self.last_operation()
-    #
-    #     else:
-    #         print("Nothing to retry.")
